@@ -17,6 +17,7 @@ public class Multiplication {
 		symbols = new ArrayList<String>();
 		symbols.add("&invisibletimes;");
 		symbols.add("&it;");
+		symbols.add("&#x2062;");
 		symbols.add("&#x2A09;");
 		symbols.add("&#xD7;");
 		symbols.add("&#xB7;");
@@ -69,7 +70,6 @@ public class Multiplication {
 	 * If so add invisible times symbol;
 	 */
 	private void findInvisibleTimes() {
-		//TODO maybe move to an arithmetic class which contains all other arithmetic classes.
 		
 		NodeList vars = doc.getElementsByTagName("mi");
 		NodeList nums = doc.getElementsByTagName("mn");
@@ -77,9 +77,9 @@ public class Multiplication {
 			Node var = vars.item(i);
 			if(var.getNextSibling() != null && 
 					!var.getNextSibling().getNodeName().equals("mo")) {
-				
-				System.out.println("Should this be:" + var.getTextContent() 
-					+ " times " + var.getNextSibling().getTextContent());
+				//TODO check all cases where an invisible times could be implied..
+//				System.out.println("Should this be:" + var.getTextContent() 
+//					+ " times " + var.getNextSibling().getTextContent());
 			}
 		}
 
@@ -87,9 +87,9 @@ public class Multiplication {
 			Node num = nums.item(i);
 			if(num.getNextSibling() != null && 
 					!num.getNextSibling().getNodeName().equals("mo")) {
-				
-				System.out.println("Should this be:" + num.getTextContent() 
-					+ " times " + num.getNextSibling().getTextContent());
+				//TODO check all cases where an invisible times could be implied..
+//				System.out.println("Should this be:" + num.getTextContent() 
+//					+ " times " + num.getNextSibling().getTextContent());
 			}
 		}
 		
