@@ -38,7 +38,7 @@ public class Subtraction {
 			sub.setTextContent(null);
 			doc.renameNode(sub, null, "apply");
 			sub.appendChild(doc.createElement("minus"));
-			sub.appendChild(sub.getPreviousSibling());
+			if(sub.getPreviousSibling() != null) sub.appendChild(sub.getPreviousSibling());
 			sub.appendChild(sub.getNextSibling());
 
 		}

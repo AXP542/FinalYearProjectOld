@@ -36,7 +36,7 @@ public class Multiplication {
 		List<Node> multSigns = new ArrayList<Node>();
 		
 		for (int i = 0; i < nl.getLength(); i++) {
-			String s = nl.item(i).getTextContent();
+			String s = nl.item(i).getTextContent().toLowerCase();
 			if(symbols.contains(s))
 				multSigns.add(nl.item(i));
 		}
