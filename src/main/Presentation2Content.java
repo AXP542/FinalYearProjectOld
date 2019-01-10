@@ -18,7 +18,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import maths_areas.SimpleArithmetic;
+import maths_areas.Relations;
+import maths_areas.ArithmeticAlgebraLogic;
+import maths_areas.Constants;
 
 public class Presentation2Content {
 	
@@ -35,9 +37,11 @@ public class Presentation2Content {
 	private void convertIndexed() {
 
 		removeWhiteSpace();
-		
-		SimpleArithmetic sa = new SimpleArithmetic(doc);
-		sa.convert();
+
+		ArithmeticAlgebraLogic a = new ArithmeticAlgebraLogic(doc);
+		a.convert();
+		Constants c = new Constants(doc);
+		c.convert();
 		//TODO add other areas
 		
 		reduceMrows();
