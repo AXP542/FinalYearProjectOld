@@ -1,8 +1,7 @@
-package simple_arithmetic;
+package maths_areas.arithmetic_algebra_logic;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -50,16 +49,33 @@ public class Brackets {
 	 * Create an <mfenced> node and adopt children of the <mo> bracket grouping
 	 */
 	private void enlcose(List<Node> checkList) {
-		Node fenced  = doc.renameNode(checkList.get(0), null, "mfenced");
+		Node fenced  = doc.renameNode(checkList.get(0), null, "mrow");
 		fenced.setTextContent(null);
-		Node row = doc.createElement("mrow");
 		for(int i = 1; i < checkList.size(); i ++) {
-			row.appendChild(checkList.get(i));
+			fenced.appendChild(checkList.get(i));
 		}
-		row.removeChild(row.getLastChild());
-		fenced.appendChild(row);
+		fenced.removeChild(fenced.getLastChild());
+		reduceMrows(fenced);
+			
 	}
 	
+	/*
+	 * If it is a single mrow tag inside another then it can be reduced
+	 */
+	private void reduceMrows(Node fenced) {		
+		Node parent = fenced.getParentNode();
+		if(parent.getChildNodes().getLength() == 1 && parent.getNodeName().equals("mrow")) {
+			Node next = fenced.getFirstChild();
+			while(next != null) {
+				parent.appendChild(next);
+				next = fenced.getFirstChild();
+			}
+			parent.removeChild(fenced);
+		}			
+		
+	}
+
+
 	/*
 	 * Get the next available bracket from the document or return null if EOF
 	 */
@@ -74,17 +90,19 @@ public class Brackets {
 	}
 	
 	/*
-	 * Ask the user to check a bracket grouping to be finalised.
+	 * Check if the number of open and closed brackets is balanced (intervals will need to be converted first)
 	 */
-	//TODO calculate when brackets should be grouped instead of asking the user 
 	private boolean check(List<Node> nodes) {
+		int open = 0;
+		int closed = 0;
 		for(Node n : nodes) {
-			System.out.print(" " + n.getNodeName() + n.getTextContent() + " ");
+			if(n.getTextContent().equals("("))
+				open ++;
+			if(n.getTextContent().equals(")"))
+				closed ++;
 		}
-		System.out.println("Correct? y/n");
-		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(System.in);
-        String inputString = scanner. nextLine();
-		return inputString.equals("y");
+		return open == closed;
+		
 	}
+
 }

@@ -1,4 +1,4 @@
-package simple_arithmetic;
+package maths_areas.arithmetic_algebra_logic;
 
 import java.util.ArrayList;
 import java.util.List;

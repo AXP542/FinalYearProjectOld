@@ -1,4 +1,4 @@
-package simple_arithmetic;
+package maths_areas.arithmetic_algebra_logic;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
