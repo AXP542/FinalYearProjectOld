@@ -25,12 +25,16 @@ public class Absolute {
 	private void convert() {
 		List<Node> e = findNextElements();
 		while(e != null) {
-			Node apply = doc.insertBefore(e.get(0), doc.createElement("apply"));
+			Node parent = e.get(0).getParentNode();
+			Node apply = doc.createElement("apply");
+			parent.insertBefore(apply, e.get(0));
 			String fun = e.get(0).getTextContent().equals("|")? "absolute" : "ceiling";
 			apply.appendChild(doc.createElement(fun));
-			e.remove(e.get(0));
-			for(Node n : e)
+			for(Node n : e) {
 				apply.appendChild(n);
+			}
+			apply.removeChild(e.get(0));
+			apply.removeChild(e.get(e.size() - 1));
 			e = findNextElements();
 		}
 	}
@@ -51,6 +55,7 @@ public class Absolute {
 				next = next.getNextSibling();
 				while(next != null) {
 					if(next.getTextContent().equalsIgnoreCase("|")) {
+						elements.add(next);
 						next = null;
 						complete = true;
 					}

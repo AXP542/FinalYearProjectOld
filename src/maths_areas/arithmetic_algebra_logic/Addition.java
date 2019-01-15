@@ -38,8 +38,8 @@ public class Addition {
 			doc.renameNode(plus, null, "apply");
 			plus.appendChild(doc.createElement("plus"));
 			plus.appendChild(plus.getPreviousSibling());
-			plus.appendChild(plus.getNextSibling());
 			try {
+				plus.appendChild(plus.getNextSibling());
 				while(plus.getNextSibling().equals(plusSigns.get(i + 1))) {
 					Node nullPlus = plus.getNextSibling();
 					plus.appendChild(nullPlus);

@@ -16,6 +16,7 @@ public class Subtraction {
 		this.doc = doc;
 		symbols = new ArrayList<String>();
 		symbols.add("-");
+		symbols.add("&#x2212;");
 		convert();
 	}
 	
@@ -28,7 +29,7 @@ public class Subtraction {
 		List<Node> subSigns = new ArrayList<Node>();
 		
 		for (int i = 0; i < nl.getLength(); i++) {
-			String s = nl.item(i).getTextContent();
+			String s = nl.item(i).getTextContent().toLowerCase();
 			if(symbols.contains(s))
 				subSigns.add(nl.item(i));
 		}

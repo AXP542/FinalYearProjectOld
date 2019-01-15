@@ -23,6 +23,7 @@ public class Factorial {
 		Node n = findNextFactorial();
 		while(n != null) {
 			Node apply = doc.renameNode(n, null, "apply");
+			apply.setTextContent(null);
 			apply.appendChild(doc.createElement("factorial"));
 			apply.appendChild(apply.getPreviousSibling());
 			n = findNextFactorial();

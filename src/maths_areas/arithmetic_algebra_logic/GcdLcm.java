@@ -41,6 +41,11 @@ public class GcdLcm {
 			if(nl.item(i).getTextContent().equalsIgnoreCase(gcdlcm)) 		
 				return nl.item(i);
 		}
+		nl = doc.getElementsByTagName("mi");		
+		for (int i = 0; i < nl.getLength(); i++) {
+			if(nl.item(i).getTextContent().equalsIgnoreCase(gcdlcm)) 		
+				return nl.item(i);
+		}
 		return null;
 	}
 

@@ -26,9 +26,12 @@ public class Remainder {
 		List<Node> e = findNextElements();
 		while(e != null) {
 			//<mi>a</<mi><mo>mod</mo><mi>b</<mi>
-			Node a = e.get(0);
-			Node b = e.get(1);
-			Node apply = doc.insertBefore(a, doc.createElement("apply"));
+			Node mod = e.get(0);
+			Node a = e.get(1);
+			Node b = e.get(2);
+			Node parent = a.getParentNode();
+			parent.removeChild(mod);
+			Node apply = parent.insertBefore(doc.createElement("apply"), a);
 			apply.appendChild(doc.createElement("rem"));
 			apply.appendChild(a);
 			apply.appendChild(b);
@@ -47,6 +50,7 @@ public class Remainder {
 		for (int i = 0; i < nl.getLength(); i++) {
 			Node next = nl.item(i);
 			if(next.getTextContent().equalsIgnoreCase("mod")) {
+				elements.add(next);
 				elements.add(next.getPreviousSibling());
 				elements.add(next.getNextSibling());
 				return elements;
