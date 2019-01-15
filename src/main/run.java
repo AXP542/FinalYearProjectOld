@@ -19,7 +19,50 @@ import org.xml.sax.SAXException;
 public class run {
 
 	public static void main(String[] args) {
+		allFiles();
+		//singleFile("input/Presentation/filePath");
+
+	}
+
+	private static void singleFile(String filePath) {				
+		try {
+			File f = new File(filePath);
+			byte[] encoded = Files.readAllBytes(f.toPath());
+			String input = new String(encoded, Charset.defaultCharset());
+			input = input.replaceAll("&", "&amp;");
+			
+			DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			InputSource is = new InputSource();
+			is.setCharacterStream(new StringReader(input));
+			Document doc = db.parse(is);
+	
+			Presentation2Content mathDoc = new Presentation2Content(doc);
+			String convertedPres =  mathDoc.print();
+			
+			
+			String contentPath = f.getPath().replaceAll("Presentation", "Content");
+			File c = new File(contentPath);
+			if(c.exists()) {
+				byte[] b = Files.readAllBytes(c.toPath());
+				String content = new String(b, Charset.defaultCharset());
+				content = content.replaceAll("\\s{2,}", "").replaceAll("\n", "");
+				convertedPres = convertedPres.replaceAll(System.getProperty("line.separator"), "");
+				System.out.println(convertedPres);
+				System.out.println(content);
+				if(!convertedPres.trim().equals(content.trim())) {
+					System.out.println("Conversion does not mathch");
+				}
+			}else {
+				System.out.println(contentPath + " does not exist.");
+				System.out.println(convertedPres);
+			}
+		} catch (SAXException | IOException | ParserConfigurationException e) {
+			e.printStackTrace();
+		}
 		
+	}
+
+	private static void allFiles() {
 		List<String> successfulFiles = new ArrayList<String>();
 		List<String> failedFiles = new ArrayList<String>();
 		int uncounted = 0;
@@ -72,7 +115,6 @@ public class run {
 		System.out.println("Failed: " + failedFiles.size());
 		System.out.println("Unmatched files: " + uncounted);
 		
-
 	}
 
 }
