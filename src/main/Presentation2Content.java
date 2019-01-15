@@ -18,9 +18,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import maths_areas.Relations;
 import maths_areas.ArithmeticAlgebraLogic;
 import maths_areas.Constants;
+import maths_areas.Relations;
 
 public class Presentation2Content {
 	
@@ -40,6 +40,8 @@ public class Presentation2Content {
 
 		ArithmeticAlgebraLogic a = new ArithmeticAlgebraLogic(doc);
 		a.convert();
+		Relations r = new Relations(doc);
+		r.convert();
 		Constants c = new Constants(doc);
 		c.convert();
 		//TODO add other areas
@@ -82,7 +84,7 @@ public class Presentation2Content {
 	/*
 	 * Helper method to print the xml file to console
 	 */
-	public void print() {
+	public String print() {
 		try {			
 			Transformer tf = TransformerFactory.newInstance().newTransformer();
 			tf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
@@ -90,11 +92,12 @@ public class Presentation2Content {
 			Writer out = new StringWriter();
 			tf.transform(new DOMSource(doc), new StreamResult(out));
 			String result = out.toString().replaceAll("&amp;", "&");
-			System.out.println(result);
-			System.out.println("\nEOF!");
+			result = result.replace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>", "");
+			return result;
 		} catch (TransformerException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 }
