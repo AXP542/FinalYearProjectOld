@@ -28,7 +28,7 @@ public class Absolute {
 			Node parent = e.get(0).getParentNode();
 			Node apply = doc.createElement("apply");
 			parent.insertBefore(apply, e.get(0));
-			String fun = e.get(0).getTextContent().equals("|")? "absolute" : "ceiling";
+			String fun = e.get(0).getTextContent().equals("|")? "abs" : "ceiling";
 			apply.appendChild(doc.createElement(fun));
 			for(Node n : e) {
 				apply.appendChild(n);
