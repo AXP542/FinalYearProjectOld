@@ -4,10 +4,13 @@ import org.w3c.dom.Document;
 
 import maths_areas.arithmetic_algebra_logic.Absolute;
 import maths_areas.arithmetic_algebra_logic.Addition;
+import maths_areas.arithmetic_algebra_logic.Logic1;
+import maths_areas.arithmetic_algebra_logic.Logic2;
 import maths_areas.arithmetic_algebra_logic.Brackets;
 import maths_areas.arithmetic_algebra_logic.ComplexConjugate;
 import maths_areas.arithmetic_algebra_logic.Division;
 import maths_areas.arithmetic_algebra_logic.Factorial;
+import maths_areas.arithmetic_algebra_logic.FunctionApplication;
 import maths_areas.arithmetic_algebra_logic.GcdLcm;
 import maths_areas.arithmetic_algebra_logic.Indicies;
 import maths_areas.arithmetic_algebra_logic.MaxMin;
@@ -16,6 +19,7 @@ import maths_areas.arithmetic_algebra_logic.Quotient;
 import maths_areas.arithmetic_algebra_logic.Remainder;
 import maths_areas.arithmetic_algebra_logic.StandardFunctions;
 import maths_areas.arithmetic_algebra_logic.Subtraction;
+import maths_areas.arithmetic_algebra_logic.SumAndProduct;
 
 public class ArithmeticAlgebraLogic{
 	
@@ -40,7 +44,15 @@ public class ArithmeticAlgebraLogic{
 		GcdLcm gl = new GcdLcm(doc);
 		Absolute ab = new Absolute(doc);
 		StandardFunctions sf = new StandardFunctions(doc);
-		ComplexConjugate c = new ComplexConjugate(doc);		
+		ComplexConjugate c = new ComplexConjugate(doc);	
+
+		FunctionApplication fun = new FunctionApplication(doc);
+		
+		SumAndProduct sp = new SumAndProduct(doc);
+		
+		//Logic
+		Logic1 logic1 = new Logic1(doc);
+		Logic2 logic2 = new Logic2(doc);
 		
 		Indicies i = new Indicies(doc);
 		Division d = new Division(doc);
