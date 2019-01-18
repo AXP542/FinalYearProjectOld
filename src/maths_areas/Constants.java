@@ -4,7 +4,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import maths_areas.constants.Numbers;
 import maths_areas.constants.SimpleNumbersAndVars;
+import maths_areas.constants.SpecialNumbers;
 
 public class Constants {
 
@@ -19,6 +21,9 @@ public class Constants {
 	 */
 	@SuppressWarnings("unused")
 	public void convert() {
+		removeMrows();
+		Numbers nums = new Numbers(doc);
+		SpecialNumbers snums = new SpecialNumbers(doc);
 		SimpleNumbersAndVars nv = new SimpleNumbersAndVars(doc);
 		removeMrows();
 	}

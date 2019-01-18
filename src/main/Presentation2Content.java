@@ -21,6 +21,7 @@ import org.w3c.dom.NodeList;
 import maths_areas.ArithmeticAlgebraLogic;
 import maths_areas.Constants;
 import maths_areas.Relations;
+import maths_areas.Sets;
 
 public class Presentation2Content {
 	
@@ -37,7 +38,9 @@ public class Presentation2Content {
 	private void convertIndexed() {
 
 		removeWhiteSpace();
-
+		
+		Sets s = new Sets(doc);
+		s.convert();
 		ArithmeticAlgebraLogic a = new ArithmeticAlgebraLogic(doc);
 		a.convert();
 		Relations r = new Relations(doc);
