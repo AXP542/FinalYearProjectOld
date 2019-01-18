@@ -69,12 +69,12 @@ public class Absolute {
 				elements.add(next);
 				next = next.getNextSibling();
 				while(next != null) {
+					elements.add(next);
 					if(next.getTextContent().equalsIgnoreCase("&#x2309;")) {
 						next = null;
 						complete = true;
 					}
 					else {
-						elements.add(next);
 						next = next.getNextSibling();
 					}
 				}

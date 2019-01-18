@@ -21,13 +21,22 @@ public class MaxMin {
 		Node f = findFunction(maxmin);
 		while(f!=null) {
 			removeInvisible(f);
-			boolean mfl = mfencedList(f, maxmin);
-			if(!mfl) {
-				mfencedRow(f);//mfenced:mrow -> mrow
-				bracketsRow(f);//<mo>( or {</mo> -> mrow
-				createApply(f, maxmin);
-				if(!isList(f)) 
-					addCondition(f);					
+			String s = f.getNextSibling().getNodeName();
+			if(s.equals("set")) {
+				Node set = f.getNextSibling();
+				doc.renameNode(set, null, "apply");
+				set.insertBefore(f, set.getFirstChild());
+				doc.renameNode(f, null, maxmin);
+				f.setTextContent(null);
+			}else {
+				boolean mfl = mfencedList(f, maxmin);
+				if(!mfl) {
+					mfencedRow(f);//mfenced:mrow -> mrow
+					bracketsRow(f);//<mo>( or {</mo> -> mrow
+					createApply(f, maxmin);
+					if(!isList(f)) 
+						addCondition(f);					
+				}
 			}
 			f = findFunction(maxmin);
 		}
