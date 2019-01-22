@@ -36,6 +36,7 @@ public class SimpleSets {
 			if(row.getChildNodes().getLength() == 1) {
 				row.getParentNode().insertBefore(row.getFirstChild(), row);
 				row.getParentNode().removeChild(row);
+				i--;
 			}				
 		}
 	}
