@@ -22,6 +22,7 @@ import maths_areas.ArithmeticAlgebraLogic;
 import maths_areas.Constants;
 import maths_areas.Relations;
 import maths_areas.Sets;
+import maths_areas.Trigonometry;
 
 public class Presentation2Content {
 	
@@ -43,6 +44,8 @@ public class Presentation2Content {
 		s.convert();
 		ArithmeticAlgebraLogic a = new ArithmeticAlgebraLogic(doc);
 		a.convert();
+		Trigonometry trig = new Trigonometry(doc);
+		trig.convert();
 		Relations r = new Relations(doc);
 		r.convert();
 		Constants c = new Constants(doc);
